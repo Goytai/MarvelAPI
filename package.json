@@ -1,14 +1,23 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "src/shared/http/server.ts",
+  "main": "dist/shared/http/server.js",
   "license": "MIT",
   "scripts": {
     "dev": "tsnd --ignore-watch node_modules --respawn src/shared/http/server.ts",
-    "start": "node build/shared/http/server.js",
+    "start": "node dist/shared/http/server.js",
     "build": "tsc --build tsconfig.json"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.0",
     "typescript": "^4.3.2"
   },
   "dependencies": {
