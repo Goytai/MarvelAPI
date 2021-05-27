@@ -1,16 +1,26 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "dist/shared/http/server.js",
+  "main": "dist/shared/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --ignore-watch node_modules --respawn src/shared/http/server.ts",
-    "start": "node dist/shared/http/server.js",
-    "build": "tsc"
+    "dev": "set NODE_ENV=development && tsnd -r dotenv/config -r tsconfig-paths/register --ignore-watch node_modules --ignore src/__tests__ --respawn src/shared/index.ts",
+    "build": "tsc",
+    "start": "set NODE_ENV=production && node dist/shared/index.js",
+    "pretest": "set NODE_ENV=test tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
+    "test": "set NODE_ENV=test && jest",
+    "posttest": "set NODE_ENV=test tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
+    "migration:generate": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate",
+    "migration:create": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create -n",
+    "migration:run": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
+    "migration:show": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:show",
+    "migration:rollback": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert",
+    "migration:drop-create": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop && tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
     "@types/express": "^4.17.12",
+    "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
     "eslint": "^7.27.0",
@@ -19,12 +29,18 @@
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.1",
     "prettier": "^2.3.0",
+    "ts-jest": "^27.0.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.3.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "ts-node-dev": "^1.1.6"
+    "pg": "^8.6.0",
+    "ts-node-dev": "^1.1.6",
+    "typeorm": "^0.2.32"
   }
 }
