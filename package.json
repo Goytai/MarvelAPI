@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "src/shared/http/server.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsnd --ignore-watch node_modules --respawn src/shared/http/server.ts",
+    "start": "node build/shared/http/server.js",
+    "build": "tsc --build tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "ts-node-dev": "^1.1.6"
+  }
+}
