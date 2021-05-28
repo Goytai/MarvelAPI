@@ -4,18 +4,18 @@
   "main": "dist/shared/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "set NODE_ENV=development && tsnd -r dotenv/config -r tsconfig-paths/register --ignore-watch node_modules --ignore src/__tests__ --respawn src/shared/index.ts",
+    "dev": "tsnd -r dotenv/config -r tsconfig-paths/register --ignore-watch node_modules --ignore src/__tests__ --respawn src/shared/index.ts",
     "build": "tsc",
-    "start": "set NODE_ENV=production && node dist/shared/index.js",
-    "pretest": "set NODE_ENV=test tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
-    "test": "set NODE_ENV=test && jest",
-    "posttest": "set NODE_ENV=test tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
-    "migration:generate": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate",
+    "start": "node dist/shared/index.js",
+    "migration:generate": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -n",
     "migration:create": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create -n",
     "migration:run": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
     "migration:show": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:show",
     "migration:rollback": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:revert",
-    "migration:drop-create": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop && tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run"
+    "migration:drop-create": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop && tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
+    "migration:drop": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
+    "pretest": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop -c test && tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -c test",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",

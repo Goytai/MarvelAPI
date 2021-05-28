@@ -19,6 +19,7 @@
     "prettier" // Último plugin
   ],
   "rules": {
+    "camelcase": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "prettier/prettier": "warn",
@@ -31,7 +32,18 @@
       }
     ],
 
-    "no-unused-expressions": [{ "allowTernary": true }]
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "interface",
+        "prefix": ["I"],
+        "format": ["PascalCase"]
+      }
+    ],
+
+    "class-methods-use-this": ["error", { "exceptMethods": ["up", "down"] }],
+
+    "no-unused-expressions": ["error", { "allowTernary": true }]
   },
   "settings": {
     "import/resolver": {
