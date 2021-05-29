@@ -32,7 +32,8 @@ export default class CreateComics1622155525600 implements MigrationInterface {
           },
           {
             name: 'active',
-            type: 'boolean'
+            type: 'boolean',
+            default: true
           },
           {
             name: 'updated_at',

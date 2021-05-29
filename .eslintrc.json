@@ -41,9 +41,11 @@
       }
     ],
 
-    "class-methods-use-this": ["error", { "exceptMethods": ["up", "down"] }],
+    "class-methods-use-this": "off",
 
-    "no-unused-expressions": ["error", { "allowTernary": true }]
+    "no-unused-expressions": ["error", { "allowTernary": true }],
+    "no-useless-constructor": "off"
+
   },
   "settings": {
     "import/resolver": {

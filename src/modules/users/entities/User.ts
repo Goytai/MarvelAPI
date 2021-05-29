@@ -16,8 +16,8 @@ export default class User {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
-  avatar: string;
+  @Column('varchar', { nullable: true })
+  avatar: string | null;
 
   @Column()
   name: string;
@@ -52,8 +52,8 @@ export default class User {
   })
   comics: Comics[];
 
-  @Column('boolean')
-  active: boolean;
+  @Column('boolean', { name: 'active' })
+  active = true;
 
   @UpdateDateColumn()
   updated_at: Date;

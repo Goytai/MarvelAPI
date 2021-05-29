@@ -1,2 +1,3 @@
+import 'reflect-metadata';
 import './typeorm';
-import './http/server';
+import './http/express/server';

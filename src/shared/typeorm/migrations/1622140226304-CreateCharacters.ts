@@ -34,7 +34,8 @@ export default class CreateCharacters1622140226304
           },
           {
             name: 'active',
-            type: 'boolean'
+            type: 'boolean',
+            default: true
           },
           {
             name: 'updated_at',

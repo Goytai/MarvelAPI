@@ -20,11 +20,11 @@ export default class Charapters {
   @Column()
   description: string;
 
-  @Column()
-  picture: string;
+  @Column('varchar', { nullable: true })
+  picture: string | null;
 
-  @Column('boolean')
-  active: boolean;
+  @Column('boolean', { name: 'active' })
+  active = true;
 
   @UpdateDateColumn()
   updated_at: Date;
