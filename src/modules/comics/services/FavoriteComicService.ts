@@ -1,6 +1,7 @@
 import { Repository } from 'typeorm';
 
 import User from '@modules/users/entities/User';
+import AppError from '@shared/errors/AppError';
 import Comics from '../entities/Comics';
 
 interface IRequest {
@@ -29,9 +30,9 @@ class FavoriteComics {
     });
 
     if (!checkUserRegistered) {
-      throw new Error('User not found!');
+      throw new AppError('User not found!', 404);
     } else if (!marvel_id || !title) {
-      throw new Error('It was not possible to favorite this comic!');
+      throw new AppError('It was not possible to favorite this comic!', 400);
     }
 
     const comicExist = await this.comicsRepository.findOne({ marvel_id });

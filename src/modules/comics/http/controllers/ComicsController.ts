@@ -7,6 +7,7 @@ import User from '@modules/users/entities/User';
 import FavoriteComics from '@modules/comics/services/FavoriteComicService';
 
 import api from '@shared/http/axios';
+import AppError from '@shared/errors/AppError';
 
 export default class ComicsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -16,7 +17,7 @@ export default class ComicsController {
     const currentPage = page ? (Number(page) - 1) * Number(perPage) : 1;
 
     if (perPage > 100) {
-      throw new Error('The limit cannot be greater than 100');
+      throw new AppError('The limit cannot be greater than 100', 400);
     }
 
     const remote = await api.get('comics', {

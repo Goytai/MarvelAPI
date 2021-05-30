@@ -6,6 +6,7 @@ import User from '@modules/users/entities/User';
 import Characters from '@modules/characters/entities/Characters';
 
 import FavoriteCharacters from '@modules/characters/services/FavoriteCharacters';
+import AppError from '@shared/errors/AppError';
 
 export default class CharactersController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -15,7 +16,7 @@ export default class CharactersController {
     const currentPage = page ? (Number(page) - 1) * Number(perPage) : 1;
 
     if (perPage > 100) {
-      throw new Error('The limit cannot be greater than 100');
+      throw new AppError('The limit cannot be greater than 100', 400);
     }
 
     const remote = await api.get('characters', {

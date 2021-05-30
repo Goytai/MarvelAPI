@@ -1,6 +1,7 @@
 import Comics from '@modules/comics/entities/Comics';
 import FavoriteComics from '@modules/comics/services/FavoriteComicService';
 import User from '@modules/users/entities/User';
+import AppError from '@shared/errors/AppError';
 import { Connection, createConnection, Repository } from 'typeorm';
 
 describe('Favorite Comics Service', () => {
@@ -32,7 +33,7 @@ describe('Favorite Comics Service', () => {
       }
     });
 
-    await expect(response).rejects.toThrowError(new Error('User not found!'));
+    await expect(response).rejects.toBeInstanceOf(AppError);
   });
 
   it('should be not able favorite comic with name has undefined', async () => {
@@ -56,9 +57,7 @@ describe('Favorite Comics Service', () => {
       comic
     });
 
-    await expect(response).rejects.toThrowError(
-      new Error('It was not possible to favorite this comic!')
-    );
+    await expect(response).rejects.toBeInstanceOf(AppError);
   });
 
   it('should be not able favorite comic with marvel id has undefined', async () => {
@@ -82,9 +81,7 @@ describe('Favorite Comics Service', () => {
       comic
     });
 
-    await expect(response).rejects.toThrowError(
-      new Error('It was not possible to favorite this comic!')
-    );
+    await expect(response).rejects.toBeInstanceOf(AppError);
   });
 
   it('should be able favorite comic', async () => {

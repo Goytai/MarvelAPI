@@ -1,5 +1,6 @@
 import User from '@modules/users/entities/User';
 import CreateUserService from '@modules/users/services/CreateUserServices';
+import AppError from '@shared/errors/AppError';
 import { Connection, createConnection, Repository } from 'typeorm';
 
 describe('User Service', () => {
@@ -45,8 +46,6 @@ describe('User Service', () => {
 
     await createUserService.execute(user);
 
-    expect(createUserService.execute(user)).rejects.toThrowError(
-      new Error('Email address already used')
-    );
+    expect(createUserService.execute(user)).rejects.toBeInstanceOf(AppError);
   });
 });
