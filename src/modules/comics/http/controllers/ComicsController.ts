@@ -1,5 +1,12 @@
-import api from '@shared/http/axios';
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
+
+import Comics from '@modules/comics/entities/Comics';
+import User from '@modules/users/entities/User';
+
+import FavoriteComics from '@modules/comics/services/FavoriteComicService';
+
+import api from '@shared/http/axios';
 
 export default class ComicsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -32,6 +39,7 @@ export default class ComicsController {
     });
 
     const result = {
+      statusCode: 200,
       page: currentPage,
       limit: perPage,
       comics: comicsArray
@@ -58,9 +66,29 @@ export default class ComicsController {
     });
 
     const result = {
+      statusCode: 200,
       comics: comicsArray
     };
 
     return response.status(200).json(result);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      user_id,
+      comic: { marvel_id, title, description, picture }
+    } = request.body;
+
+    const favoriteComics = new FavoriteComics(
+      getRepository(Comics),
+      getRepository(User)
+    );
+
+    await favoriteComics.execute({
+      user_id,
+      comic: { marvel_id, title, description, picture }
+    });
+
+    return response.status(201).json({ statusCode: 201 });
   }
 }

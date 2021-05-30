@@ -34,16 +34,34 @@ class FavoriteCharacters {
       throw new Error('It was not possible to favorite this character!');
     }
 
-    const character = await this.characterRepository.save({
-      marvel_id,
-      name,
-      description,
-      picture
+    const characterExist = await this.characterRepository.findOne({
+      marvel_id
     });
+
+    let character: Characters;
+
+    if (characterExist) {
+      character = this.characterRepository.merge(characterExist, {
+        name,
+        description,
+        picture
+      });
+    } else {
+      character = this.characterRepository.create({
+        marvel_id,
+        name,
+        description,
+        picture
+      });
+    }
+
+    const characterArray = checkUserRegistered.characters.filter(
+      oldCharacter => Number(oldCharacter.marvel_id) !== Number(marvel_id)
+    );
 
     const insertCharacters = {
       ...checkUserRegistered,
-      characters: [...checkUserRegistered.characters, character]
+      characters: [...characterArray, character]
     };
     const addFavorite = await this.userRepository.save(insertCharacters);
 

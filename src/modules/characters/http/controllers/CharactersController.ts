@@ -38,6 +38,7 @@ export default class CharactersController {
     });
 
     const result = {
+      statusCode: 200,
       page: currentPage,
       limit: perPage,
       comics: charactersArray
@@ -64,6 +65,7 @@ export default class CharactersController {
     });
 
     const result = {
+      statusCode: 200,
       comics: charactersArray
     };
 
@@ -86,6 +88,6 @@ export default class CharactersController {
       character: { marvel_id, name, description, picture }
     });
 
-    return response.send('oi');
+    return response.status(201).json({ statusCode: 201 });
   }
 }
