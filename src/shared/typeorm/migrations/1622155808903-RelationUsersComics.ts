@@ -21,12 +21,16 @@ export default class RelationUsersComics1622155808903
           {
             columnNames: ['user_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'users'
+            referencedTableName: 'users',
+            onUpdate: 'cascade',
+            onDelete: 'cascade'
           },
           {
             columnNames: ['comic_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'comics'
+            referencedTableName: 'comics',
+            onUpdate: 'cascade',
+            onDelete: 'cascade'
           }
         ]
       })

@@ -23,12 +23,16 @@ export default class RelationUsersCharacters1622142090421
           {
             columnNames: ['user_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'users'
+            referencedTableName: 'users',
+            onUpdate: 'cascade',
+            onDelete: 'cascade'
           },
           {
             columnNames: ['character_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'characters'
+            referencedTableName: 'characters',
+            onUpdate: 'cascade',
+            onDelete: 'cascade'
           }
         ]
       })
