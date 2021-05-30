@@ -46,7 +46,7 @@ describe('User Service', () => {
     await createUserService.execute(user);
 
     expect(createUserService.execute(user)).rejects.toThrowError(
-      new Error('Email andress already used')
+      new Error('Email address already used')
     );
   });
 });
