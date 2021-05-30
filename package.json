@@ -15,7 +15,7 @@
     "migration:drop-create": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop && tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
     "migration:drop": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
     "pretest": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop -c test && tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -c test",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

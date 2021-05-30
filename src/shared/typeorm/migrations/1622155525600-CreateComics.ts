@@ -23,7 +23,8 @@ export default class CreateComics1622155525600 implements MigrationInterface {
           },
           {
             name: 'description',
-            type: 'varchar'
+            type: 'varchar',
+            isNullable: true
           },
           {
             name: 'picture',

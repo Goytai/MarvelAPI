@@ -1,5 +1,11 @@
 import api from '@shared/http/axios';
 import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
+
+import User from '@modules/users/entities/User';
+import Characters from '@modules/characters/entities/Characters';
+
+import FavoriteCharacters from '@modules/characters/services/FavoriteCharacters';
 
 export default class CharactersController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -62,5 +68,24 @@ export default class CharactersController {
     };
 
     return response.status(200).json(result);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      user_id,
+      character: { marvel_id, name, description, picture }
+    } = request.body;
+
+    const favoriteCharacters = new FavoriteCharacters(
+      getRepository(Characters),
+      getRepository(User)
+    );
+
+    await favoriteCharacters.execute({
+      user_id,
+      character: { marvel_id, name, description, picture }
+    });
+
+    return response.send('oi');
   }
 }

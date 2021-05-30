@@ -25,7 +25,8 @@ export default class CreateCharacters1622140226304
           },
           {
             name: 'description',
-            type: 'varchar'
+            type: 'varchar',
+            isNullable: true
           },
           {
             name: 'picture',

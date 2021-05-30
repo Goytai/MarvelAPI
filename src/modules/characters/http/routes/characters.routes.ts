@@ -8,4 +8,6 @@ const charactersController = new CharactersController();
 charactersRouter.get('/', charactersController.index);
 charactersRouter.get('/:marvel_id', charactersController.show);
 
+charactersRouter.patch('/', charactersController.update);
+
 export default charactersRouter;

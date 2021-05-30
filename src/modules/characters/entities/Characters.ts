@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('characters')
-export default class Charapters {
+export default class Characters {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -17,11 +17,11 @@ export default class Charapters {
   @Column()
   name: string;
 
-  @Column()
-  description: string;
+  @Column('varchar', { nullable: true })
+  description: string | null | undefined;
 
   @Column('varchar', { nullable: true })
-  picture: string | null;
+  picture: string | null | undefined;
 
   @Column('boolean', { name: 'active' })
   active = true;

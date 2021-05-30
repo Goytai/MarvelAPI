@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import Comics from '@modules/comics/entities/Comics';
-import Charapters from '@modules/characters/entities/Characters';
+import Characters from '@modules/characters/entities/Characters';
 
 @Entity('users')
 export default class User {
@@ -28,7 +28,7 @@ export default class User {
   @Column()
   password: string;
 
-  @ManyToMany(type => Charapters)
+  @ManyToMany(type => Characters, { cascade: true })
   @JoinTable({
     name: 'users_characters',
     joinColumn: {
@@ -38,9 +38,9 @@ export default class User {
       name: 'character_id'
     }
   })
-  characteres: Charapters[];
+  characters: Characters[];
 
-  @ManyToMany(type => Comics)
+  @ManyToMany(type => Comics, { cascade: true })
   @JoinTable({
     name: 'users_comics',
     joinColumn: {
