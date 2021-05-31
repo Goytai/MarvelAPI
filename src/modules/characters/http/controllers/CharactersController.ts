@@ -74,8 +74,9 @@ export default class CharactersController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
     const {
-      user_id,
       character: { marvel_id, name, description, picture }
     } = request.body;
 

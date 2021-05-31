@@ -75,8 +75,9 @@ export default class ComicsController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
     const {
-      user_id,
       comic: { marvel_id, title, description, picture }
     } = request.body;
 
