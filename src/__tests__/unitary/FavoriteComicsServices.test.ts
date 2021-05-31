@@ -1,8 +1,10 @@
-import Comics from '@modules/comics/entities/Comics';
-import FavoriteComics from '@modules/comics/services/FavoriteComicService';
-import User from '@modules/users/entities/User';
-import AppError from '@shared/errors/AppError';
 import { Connection, createConnection, Repository } from 'typeorm';
+
+import Comics from '@modules/comics/entities/Comics';
+import User from '@modules/users/entities/User';
+
+import FavoriteComics from '@modules/comics/services/FavoriteComicService';
+import AppError from '@shared/errors/AppError';
 
 describe('Favorite Comics Service', () => {
   let conn: Connection;

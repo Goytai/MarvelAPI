@@ -1,8 +1,10 @@
-import Characters from '@modules/characters/entities/Characters';
-import FavoriteCharacters from '@modules/characters/services/FavoriteCharacters';
-import User from '@modules/users/entities/User';
-import AppError from '@shared/errors/AppError';
 import { Connection, createConnection, Repository } from 'typeorm';
+
+import User from '@modules/users/entities/User';
+import Characters from '@modules/characters/entities/Characters';
+
+import FavoriteCharacters from '@modules/characters/services/FavoriteCharacters';
+import AppError from '@shared/errors/AppError';
 
 describe('Favorite Characters Service', () => {
   let conn: Connection;
