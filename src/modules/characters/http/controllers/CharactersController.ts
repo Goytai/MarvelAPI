@@ -29,12 +29,12 @@ export default class CharactersController {
     const remoteCharacters = remote.data.data.results;
     const charactersArray: any[] = [];
 
-    remoteCharacters.forEach((comic: any) => {
+    remoteCharacters.forEach((character: any) => {
       charactersArray.push({
-        marvel_id: comic.id,
-        name: comic.name,
-        description: comic.description,
-        picture: `${comic.thumbnail.path}.${comic.thumbnail.extension}`
+        marvel_id: character.id,
+        name: character.name,
+        description: character.description,
+        picture: `${character.thumbnail.path}.${character.thumbnail.extension}`
       });
     });
 
@@ -42,7 +42,7 @@ export default class CharactersController {
       statusCode: 200,
       page: currentPage,
       limit: perPage,
-      comics: charactersArray
+      characters: charactersArray
     };
 
     return response.status(200).json(result);
@@ -56,18 +56,18 @@ export default class CharactersController {
     const remoteCharacter = remote.data.data.results;
     const charactersArray: any[] = [];
 
-    remoteCharacter.forEach((comic: any) => {
+    remoteCharacter.forEach((character: any) => {
       charactersArray.push({
-        marvel_id: comic.id,
-        name: comic.name,
-        description: comic.description,
-        picture: `${comic.thumbnail.path}.${comic.thumbnail.extension}`
+        marvel_id: character.id,
+        name: character.name,
+        description: character.description,
+        picture: `${character.thumbnail.path}.${character.thumbnail.extension}`
       });
     });
 
     const result = {
       statusCode: 200,
-      comics: charactersArray
+      characters: charactersArray
     };
 
     return response.status(200).json(result);
