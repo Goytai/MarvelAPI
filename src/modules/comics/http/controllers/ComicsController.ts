@@ -5,13 +5,14 @@ import Comics from '@modules/comics/entities/Comics';
 import User from '@modules/users/entities/User';
 
 import FavoriteComics from '@modules/comics/services/FavoriteComicService';
+import RemoveFavoriteComics from '@modules/comics/services/RemoveFavoriteComicService';
 
 import api from '@shared/http/axios';
 import AppError from '@shared/errors/AppError';
 
 export default class ComicsController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { limit, page } = request.query;
+    const { limit, page, search } = request.query;
 
     const perPage = Number(limit) || 10;
     const currentPage = page ? (Number(page) - 1) * Number(perPage) : 1;
@@ -23,7 +24,8 @@ export default class ComicsController {
     const remote = await api.get('comics', {
       params: {
         limit: limit || 10,
-        offset: currentPage
+        offset: currentPage,
+        titleStartsWith: search
       }
     });
 
@@ -92,5 +94,17 @@ export default class ComicsController {
     });
 
     return response.status(201).json({ statusCode: 201 });
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const authUserId = request.user.id;
+
+    const { user_id, marvel_id } = request.body;
+
+    const remoteFavoriteComics = new RemoveFavoriteComics(getRepository(User));
+
+    await remoteFavoriteComics.execute({ authUserId, user_id, marvel_id });
+
+    return response.status(200).json({ statusCode: 200 });
   }
 }

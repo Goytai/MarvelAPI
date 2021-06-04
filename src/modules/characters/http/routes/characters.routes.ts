@@ -14,5 +14,6 @@ charactersRouter.get(
 );
 
 charactersRouter.patch('/', ensureAuthenticated, charactersController.update);
+charactersRouter.delete('/', ensureAuthenticated, charactersController.delete);
 
 export default charactersRouter;

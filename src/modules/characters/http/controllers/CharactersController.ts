@@ -5,12 +5,13 @@ import { getRepository } from 'typeorm';
 import User from '@modules/users/entities/User';
 import Characters from '@modules/characters/entities/Characters';
 
+import RemoveFavoriteCharacter from '@modules/characters/services/RemoveFavoriteCharacterService';
 import FavoriteCharacters from '@modules/characters/services/FavoriteCharacters';
 import AppError from '@shared/errors/AppError';
 
 export default class CharactersController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { limit, page } = request.query;
+    const { limit, page, search } = request.query;
 
     const perPage = Number(limit) || 10;
     const currentPage = page ? (Number(page) - 1) * Number(perPage) : 1;
@@ -22,7 +23,8 @@ export default class CharactersController {
     const remote = await api.get('characters', {
       params: {
         limit: limit || 10,
-        offset: currentPage
+        offset: currentPage,
+        nameStartsWith: search
       }
     });
 
@@ -91,5 +93,19 @@ export default class CharactersController {
     });
 
     return response.status(201).json({ statusCode: 201 });
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const authUserId = request.user.id;
+
+    const { user_id, marvel_id } = request.body;
+
+    const remoteFavoriteCharacter = new RemoveFavoriteCharacter(
+      getRepository(User)
+    );
+
+    await remoteFavoriteCharacter.execute({ authUserId, user_id, marvel_id });
+
+    return response.status(200).json({ statusCode: 200 });
   }
 }

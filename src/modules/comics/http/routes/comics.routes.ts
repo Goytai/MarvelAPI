@@ -10,5 +10,6 @@ comicsRouter.get('/', ensureAuthenticated, comicsController.index);
 comicsRouter.get('/:marvel_id', ensureAuthenticated, comicsController.show);
 
 comicsRouter.patch('/', ensureAuthenticated, comicsController.update);
+comicsRouter.delete('/', ensureAuthenticated, comicsController.delete);
 
 export default comicsRouter;
