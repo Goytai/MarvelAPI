@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsnd -r dotenv/config -r tsconfig-paths/register --ignore-watch node_modules --ignore src/__tests__ --respawn src/shared/index.ts",
+    "prebuild": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run",
     "build": "tsc && tsc-alias",
     "start": "node dist/shared/index.js",
     "migration:generate": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate -n",
