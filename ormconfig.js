@@ -16,6 +16,7 @@ module.exports = [
   {
     "name": "default",
     "type": process.env.DATABASE_TYPE || "postgres",
+    "url": process.env.DATABASE_DATABASE,
     "host": process.env.DATABASE_HOST || "localhost",
     "port": process.env.DATABASE_PORT || 5432,
     "username": process.env.DATABASE_USERNAME || "root",
