@@ -15,12 +15,12 @@ module.exports = [
   },
   {
     "name": "default",
-    "type": process.env.DB_TYPE || "postgres",
-    "host": process.env.DB_HOST || "localhost",
-    "port": process.env.DB_PORT || 5432,
-    "username": process.env.DB_USERNAME || "root",
-    "password": process.env.DB_PASS || "root",
-    "database": process.env.DB_DATABASE || "stone-marvel",
+    "type": process.env.DATABASE_TYPE || "postgres",
+    "host": process.env.DATABASE_URL || "localhost",
+    "port": process.env.DATABASE_PORT || 5432,
+    "username": process.env.DATABASE_USERNAME || "root",
+    "password": process.env.DATABASE_PASS || "root",
+    "database": process.env.DATABASE_DATABASE || "stone-marvel",
     "entities": ["./src/**/entities/*.ts"],
     "migrations":  ["./src/shared/typeorm/migrations/*.ts"],
     "cli": {
