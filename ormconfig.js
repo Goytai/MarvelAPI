@@ -1,3 +1,8 @@
+const ssl = false
+const entities = process.env.NODE_ENV === 'production ' ? "./dist/**/entities/*.js" : "./src/**/entities/*.ts"
+const migrations = process.env.NODE_ENV === 'production ' ? "./dist/shared/typeorm/migrations/*.js" :"./src/shared/typeorm/migrations/*.ts"
+const migrationsDir = process.env.NODE_ENV === 'production ' ? "./dist/shared/typeorm/migrations" : "./src/shared/typeorm/migrations"
+
 module.exports = [
   {
     "name": "test",
@@ -7,8 +12,12 @@ module.exports = [
     "username": "root",
     "password": "root",
     "database": "stone-marvel-test",
-    "entities": ["./src/**/entities/*.ts"],
-    "migrations":  ["./src/shared/typeorm/migrations/*.ts"],
+    "entities": [
+      "./src/**/entities/*.ts"
+    ],
+    "migrations":  [
+      "./src/shared/typeorm/migrations/*.ts"
+    ],
     "cli": {
       "migrationsDir": "./src/shared/typeorm/migrations"
     }
@@ -22,10 +31,15 @@ module.exports = [
     "username": process.env.DATABASE_USERNAME || "root",
     "password": process.env.DATABASE_PASS || "root",
     "database": process.env.DATABASE_DATABASE || "stone-marvel",
-    "entities": ["./src/**/entities/*.ts"],
-    "migrations":  ["./src/shared/typeorm/migrations/*.ts"],
+    "ssl": ssl,
+    "entities": [
+      entities
+    ],
+    "migrations":  [
+      migrations
+    ],
     "cli": {
-      "migrationsDir": "./src/shared/typeorm/migrations"
+      "migrationsDir": migrationsDir
     }
   }
 ]
