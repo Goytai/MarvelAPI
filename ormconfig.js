@@ -30,7 +30,7 @@ module.exports = [
     "port": process.env.DATABASE_PORT || 5432,
     "username": process.env.DATABASE_USERNAME || "root",
     "password": process.env.DATABASE_PASS || "root",
-    "database": process.env.DATABASE_DATABASE || "stone-marvel",
+    "database": process.env.DATABASE_DB || "stone-marvel",
     "ssl": ssl,
     "entities": [
       entities
