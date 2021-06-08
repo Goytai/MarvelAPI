@@ -25,12 +25,12 @@ module.exports = [
   {
     "name": "default",
     "type": process.env.DATABASE_TYPE || "postgres",
-    "url": process.env.DATABASE_DATABASE,
+    "url": process.env.DATABASE_URL,
     "host": process.env.DATABASE_HOST || "localhost",
     "port": process.env.DATABASE_PORT || 5432,
     "username": process.env.DATABASE_USERNAME || "root",
     "password": process.env.DATABASE_PASS || "root",
-    "database": process.env.DATABASE_DB || "stone-marvel",
+    "database": process.env.DATABASE_DATABASE || "stone-marvel",
     "ssl": ssl,
     "entities": [
       entities
