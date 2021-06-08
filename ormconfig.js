@@ -1,4 +1,4 @@
-const ssl = false
+const ssl = process.env.NODE_ENV === 'production ' ? {"rejectUnauthorized": false} : false
 const entities = process.env.NODE_ENV === 'production ' ? "./dist/**/entities/*.js" : "./src/**/entities/*.ts"
 const migrations = process.env.NODE_ENV === 'production ' ? "./dist/shared/typeorm/migrations/*.js" :"./src/shared/typeorm/migrations/*.ts"
 const migrationsDir = process.env.NODE_ENV === 'production ' ? "./dist/shared/typeorm/migrations" : "./src/shared/typeorm/migrations"
